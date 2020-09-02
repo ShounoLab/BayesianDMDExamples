@@ -1,0 +1,37 @@
+# ignore all
+*
+
+# allow directory
+!*/
+
+# allow
+!/TakeishiBayesianDMD
+!/BDMD-VMF
+!/Utils/NonlinearSimulations
+!/data/Data/*bicycling*
+
+!*.txt
+!*.md
+#!*.jld2
+
+!*.jl
+!*.py
+!*.r
+!*.stan
+
+#!*.tex
+#!*.cls
+#!*.sty
+#!*.bib
+#!*.bst
+#!*.bbl
+#!*.log
+
+#!*.svg
+#!*.pdf
+#!*.png
+#!*.jpg
+#!*.jpeg
+#!*.ai
+
+!.gitignore
