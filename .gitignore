@@ -8,9 +8,9 @@
 !/TakeishiBayesianDMD
 !/BDMD-VMF
 !/Utils/NonlinearSimulations
-!/data/Data/*bicycling*
+!/data/HuGaDB/*bicycling*
 
-!*.txt
+#!*.txt
 !*.md
 #!*.jld2
 
