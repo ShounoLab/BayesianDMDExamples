@@ -1,0 +1,6 @@
+[submodule "TakeishiBayesianDMD"]
+	path = TakeishiBayesianDMD
+	url = git@github.com:ShounoLab/TakeishiBayesianDMD.git
+[submodule "BDMD-VMF"]
+	path = BDMD-VMF
+	url = git@github.com:ShounoLab/BDMD-VMF.git
