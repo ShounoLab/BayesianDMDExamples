@@ -4,3 +4,6 @@
 [submodule "BDMD-VMF"]
 	path = BDMD-VMF
 	url = git@github.com:ShounoLab/BDMD-VMF.git
+[submodule "NonlinearSimulations"]
+	path = NonlinearSimulations
+	url = git@github.com:ShounoLab/NonlinearSimulations.git

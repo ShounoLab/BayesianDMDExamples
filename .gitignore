@@ -7,7 +7,7 @@
 # allow
 !/TakeishiBayesianDMD
 !/BDMD-VMF
-!/Utils/NonlinearSimulations
+!/NonlinearSimulations
 !/data/HuGaDB/*bicycling*
 
 #!*.txt
