@@ -3,13 +3,12 @@ using DataFrames
 using Plots
 using JLD2
 using CSV
-include("DMD.jl")
-include("Utils/NonlinearSimulations/NLSE/pseudospectral.jl")
-include("Utils/NonlinearSimulations/Burgers/cranknicolson.jl")
+include("$(@__DIR__)/../julia/DMD.jl")
+include("$(@__DIR__)/../NonlinearSimulations/NLSE/pseudospectral.jl")
+include("$(@__DIR__)/../NonlinearSimulations/Burgers/cranknicolson.jl")
 
 
-outdir = "output"
-outdir_takeishi = "../TakeishiBayesianDMD/output"
+outdir = "$(@__DIR__)/../output"
 
 RMSEs = DataFrame(Method = ["DMD", "TakeishiBDMD", "BDMD-VMF"],
                   NLSE = fill(0.0, 3),
@@ -17,10 +16,8 @@ RMSEs = DataFrame(Method = ["DMD", "TakeishiBDMD", "BDMD-VMF"],
 
 
 ### NLSE
-#@load "$outdir/mcmc_nlse.jld2" X X_meanreconst_bdmd
-#@load "$outdir_takeishi/mcmc_nlse_takeishi.jld2" X_pointest
-@load "$outdir/mcmc_nlse_seed123.jld2" X X_meanreconst_bdmd
-@load "$outdir_takeishi/mcmc_nlse_takeishi_seed123.jld2" X_pointest
+@load "$outdir/mcmc_nlse_bdmdvmf.jld2" X X_pointest_bdmdvmf
+@load "$outdir/mcmc_nlse_takeishi.jld2" X_pointest_tbdmd
 
 
 Ngrids = 256 # Number of Fourier modes
@@ -35,7 +32,7 @@ K = 4
 naive_dp = solve_dmd(X, K)
 X_reconst_dmd = reconstruct(t_ary, t_ary, naive_dp)
 
-X1, X2, X3, X4 = abs.(X), abs.(X_reconst_dmd), abs.(X_pointest), abs.(X_meanreconst_bdmd)
+X1, X2, X3, X4 = abs.(X), abs.(X_reconst_dmd), abs.(X_pointest_tbdmd), abs.(X_pointest_bdmdvmf)
 cmin = minimum(hcat(X1, X2, X3, X4))
 cmax = maximum(hcat(X1, X2, X3, X4))
 p1 = heatmap(t_ary, config.gridpoints, X1,
@@ -56,13 +53,13 @@ savefig(p3, "$outdir/NLSE_reconst_tbdmd.pdf")
 savefig(p4, "$outdir/NLSE_reconst_bdmd-vmf.pdf")
 
 RMSEs[:NLSE][1] = √mean(abs2.(X - X_reconst_dmd))
-RMSEs[:NLSE][2] = √mean(abs2.(X - X_pointest))
-RMSEs[:NLSE][3] = √mean(abs2.(X - X_meanreconst_bdmd))
+RMSEs[:NLSE][2] = √mean(abs2.(X - X_pointest_tbdmd))
+RMSEs[:NLSE][3] = √mean(abs2.(X - X_pointest_bdmdvmf))
 
 
 ### Burgers
-@load "$outdir/mcmc_burgers_seed123.jld2" X X_meanreconst_bdmd
-@load "$outdir_takeishi/mcmc_burgers_takeishi_seed123.jld2" X_pointest
+@load "$outdir/mcmc_burgers_bdmdvmf.jld2" X X_pointest_bdmdvmf
+@load "$outdir/mcmc_burgers_takeishi.jld2" X_pointest_tbdmd
 Ngrids = 256 # Number of Fourier modes
 L = 30.0 # Space period
 t_end = 30.0
@@ -78,7 +75,7 @@ K = 7
 naive_dp = solve_dmd(X, K)
 X_reconst_dmd = reconstruct(t_ary, t_ary, naive_dp)
 
-X1, X2, X3, X4 = real.(X), real.(X_reconst_dmd), real.(X_pointest), real.(X_meanreconst_bdmd)
+X1, X2, X3, X4 = real.(X), real.(X_reconst_dmd), real.(X_pointest_tbdmd), real.(X_pointest_bdmdvmf)
 cmin = minimum(hcat(X1, X2, X3, X4))
 cmax = maximum(hcat(X1, X2, X3, X4))
 p1 = heatmap(t_ary, config.gridpoints, X1,
@@ -99,7 +96,7 @@ savefig(p3, "$outdir/burgers_reconst_tbdmd.pdf")
 savefig(p4, "$outdir/burgers_reconst_bdmd-vmf.pdf")
 
 RMSEs[:Burgers][1] = √mean(abs2.(X - X_reconst_dmd))
-RMSEs[:Burgers][2] = √mean(abs2.(X - X_pointest))
-RMSEs[:Burgers][3] = √mean(abs2.(X - X_meanreconst_bdmd))
+RMSEs[:Burgers][2] = √mean(abs2.(X - X_pointest_tbdmd))
+RMSEs[:Burgers][3] = √mean(abs2.(X - X_pointest_bdmdvmf))
 
 CSV.write("$outdir/RMSEs.csv", RMSEs)
