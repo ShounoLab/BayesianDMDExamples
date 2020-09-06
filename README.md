@@ -75,4 +75,3 @@ In addition, required library for R are below:
 |:------|:---------------|
 |`rstan`  |≥ 2.21.2|
 |`dplyr`  |≥ 1.0.0|
-|
