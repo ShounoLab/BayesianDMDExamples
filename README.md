@@ -2,6 +2,9 @@
 Illustrative Examples of BDMD-VMF paper:  
 "Anonymous author(s), Bayesian Dynamic Mode Decomposition with Variational Matrix Factorization"
 
+# Working Directory
+Please set your working directory `examples/`.
+
 # Examples
 
 |File|Description|Recommended environment(s)|
@@ -24,6 +27,7 @@ Required libraries for Julia are below:
 |`DataFrames`  |≥ 0.21.6|
 |`JLD2`  |≥ 0.1.14|
 |`StatsBase`  |≥ 0.33.0|
+|`PDMats` | ≥ 0.10.1|
 |`ProgressMeter`  |≥ 1.3.2|
 |`Distributions`  |≥ 0.23.8|
 |`DifferentialEquations`  |≥ 6.15.0|
@@ -43,6 +47,7 @@ Required libraries for Julia are below:
 |`DataFrames`  |≥ 0.21.6|
 |`JLD2`  |≥ 0.1.14|
 |`StatsBase`  |≥ 0.33.0|
+|`PDMats` | ≥ 0.10.1|
 |`ProgressMeter`  |≥ 1.3.2|
 |`Distributions`  |≥ 0.23.8|
 |`Random`  ||
@@ -63,6 +68,7 @@ Required libraries for Julia are below:
 |`DataFrames`  |≥ 0.21.6|
 |`JLD2`  |≥ 0.1.14|
 |`StatsBase`  |≥ 0.33.0|
+|`PDMats` | ≥ 0.10.1|
 |`ProgressMeter`  |≥ 1.3.2|
 |`Distributions`  |≥ 0.23.8|
 |`KernelDensity` |≥ 0.6.0|
