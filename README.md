@@ -1,6 +1,6 @@
 # BayesianDMDExamples
-Illustrative Examples of BDMD-VMF paper:  
-"Anonymous author(s), Bayesian Dynamic Mode Decomposition with Variational Matrix Factorization"
+Illustrative Examples in the BDMD-VMF paper:  
+Takahiro Kawashima, Hayaru Shouno, Hideitsu Hino, "Bayesian Dynamic Mode Decomposition with Variational Matrix Factorization," in AAAI-21.
 
 # Working Directory
 Please set your working directory `examples/`.
